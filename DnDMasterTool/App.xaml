@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Image x:Key="AddImage"  Source="resources/add.png"/>
-        <Image x:Key="DeleteImage"  Source="resources/delete.png"/>
+        <Image x:Key="AddImage"  Source="resources/images/add.png"/>
+        <Image x:Key="DeleteImage"  Source="resources/images/delete.png"/>
+        <Image x:Key="PrintImage"  Source="resources/images/print.png"/>
+        <Image x:Key="PrintAllImage"  Source="resources/images/printAll.png"/>
     </Application.Resources>
 </Application>
