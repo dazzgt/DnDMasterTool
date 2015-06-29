@@ -1,7 +1,14 @@
-﻿namespace DnDMasterTool.Models
+﻿using System.Collections.ObjectModel;
+
+namespace DnDMasterTool.Models
 {
     public class Hero : INPC
     {
+        public Hero()
+        {
+            Inventory = new ObservableCollection<Item>();
+        }
+
         #region Fields
 
         private string _name = "";
@@ -30,7 +37,7 @@
             set
             {
                 _str = value;
-                OnPropertyChanged("Str", "StrMod");
+                OnPropertyChanged("Str", "StrMod", "Points");
             }
         }
         public int Con
@@ -39,7 +46,7 @@
             set
             {
                 _con = value;
-                OnPropertyChanged("Con","ConMod");
+                OnPropertyChanged("Con", "ConMod", "Points");
             }
         }
         public int Dex
@@ -48,7 +55,7 @@
             set
             {
                 _dex = value;
-                OnPropertyChanged("Dex","DexMod");
+                OnPropertyChanged("Dex", "DexMod", "Points");
             }
         }
         public int Wis
@@ -57,7 +64,7 @@
             set
             {
                 _wis = value;
-                OnPropertyChanged("Wis", "WisMod");
+                OnPropertyChanged("Wis", "WisMod", "Points");
             }
         }
         public int Int
@@ -66,7 +73,7 @@
             set
             {
                 _int = value;
-                OnPropertyChanged("Int", "IntMod");
+                OnPropertyChanged("Int", "IntMod", "Points");
             }
         }
         public int Cha
@@ -75,7 +82,7 @@
             set
             {
                 _cha = value;
-                OnPropertyChanged("Cha", "ChaMod");
+                OnPropertyChanged("Cha", "ChaMod", "Points");
             }
         }
         public int StrMod
@@ -105,8 +112,10 @@
 
         public int Points
         {
-            get { return _cha + _con + _dex + _int + _str + _wis; }
+            get { return 90-(_cha + _con + _dex + _int + _str + _wis); }
         }
+
+        public ObservableCollection<Item> Inventory { get; set; } 
         #endregion
     }
 }

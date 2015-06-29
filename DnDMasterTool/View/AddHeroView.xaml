@@ -2,9 +2,95 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" ResizeMode="NoResize">
-    <Grid>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:models="clr-namespace:DnDMasterTool.Models"
+        Width="700" Height="300"
+             mc:Ignorable="d" ResizeMode="NoResize" d:DataContext="{d:DesignInstance models:Hero}">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <TextBlock Text="Имя"/>
+            <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+
+            <TextBlock Text="Класс"/>
+            <ComboBox Width="100"/>
+            <TextBlock Text="{Binding Path=Points, StringFormat='{}Points :{0}'}"></TextBlock>
+            <Button Width="100" Height="25" Click="ButtonBase_OnClick">
+                <WrapPanel>
+                    <TextBlock Text="Добавить"/>
+                    <Image Source="../resources/images/add.png" Stretch="Uniform" />
+                </WrapPanel>
+            </Button>
+        </ToolBar>
+        <Grid DockPanel.Dock="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Параметр" Grid.Row="0"/>
+            <TextBlock Text="Значение" Grid.Row="0" Grid.Column="1"/>
+            <TextBlock Text="Модификатор" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Сила" Grid.Row="1"/>
+            <TextBox Text="{Binding Path=Str, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=StrMod}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center"/>
             
-    </Grid>
+            <TextBlock Text="Телосложение" Grid.Row="2"/>
+            <TextBox Text="{Binding Path=Con, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=ConMod}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="Ловкость" Grid.Row="3"/>
+            <TextBox Text="{Binding Path=Dex, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=DexMod}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="Интеллект" Grid.Row="4"/>
+            <TextBox Text="{Binding Path=Int}" Grid.Row="4" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=IntMod}" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="Мудрость" Grid.Row="5"/>
+            <TextBox Text="{Binding Path=Wis, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=WisMod}" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"/>
+            
+            <TextBlock Text="Харизма" Grid.Row="6"/>
+            <TextBox Text="{Binding Path=Cha, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Text="{Binding Path=ChaMod}" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <GroupBox Header="Инвентарь">
+            <DockPanel>
+                <StackPanel>
+                    <Button Content="{StaticResource AddImage}" Height="25" Width="25" HorizontalAlignment="Left" Click="AddItem_OnClick"/>
+                    <ItemsControl ItemsSource="{Binding Path=Inventory}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}">
+                                    <TextBlock.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Description, StringFormat='{}Описание {0}'}"/>
+                                            <TextBlock Text="{Binding Path=Cost, StringFormat='{}Цена: {0}'}"></TextBlock>
+                                        </StackPanel>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+    </DockPanel>
 </Window>

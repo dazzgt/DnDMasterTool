@@ -19,7 +19,7 @@
                     <Button Content="{StaticResource AddImage}" ToolTip="Добавить Героя" Click="AddHero_OnClick"/>
                     <Button Content="{StaticResource DeleteImage}" ToolTip="Удалить Героя" Click="DeleteHero_OnClick"/>
                     <Button Content="{StaticResource PrintImage}" ToolTip="Распечатать лист персонажа" Click="PrintHero_OnClick"/>
-                    <Button Content="{StaticResource PrintAllImage}" ToolTip="Распечатать лист персонажа" Click="PrintAllHero_OnClick"/>
+                    <Button Content="{StaticResource PrintAllImage}" ToolTip="Распечатать всех персонажей" Click="PrintAllHero_OnClick"/>
                 </WrapPanel>
                 <ListBox ItemsSource="{Binding Path=Heroes}" Grid.Row="1" SelectedIndex="{Binding Path=SelectedHero}">
                     <ListBox.ItemTemplate>

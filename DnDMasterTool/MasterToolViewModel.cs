@@ -122,5 +122,10 @@ namespace DnDMasterTool
         }
 
         #endregion
+
+        public void DeleteHero()
+        {
+            Heroes.RemoveAt(SelectedHero);
+        }
     }
 }

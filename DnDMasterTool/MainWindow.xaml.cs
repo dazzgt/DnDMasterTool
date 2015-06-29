@@ -26,7 +26,7 @@ namespace DnDMasterTool
 
         private void DeleteHero_OnClick(object sender, RoutedEventArgs e)
         {
-
+            _model.DeleteHero();
         }
 
         private void PrintHero_OnClick(object sender, RoutedEventArgs e)
